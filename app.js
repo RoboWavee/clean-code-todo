@@ -50,9 +50,7 @@ function addTask() {
   taskInput.value = '';
 }
 
-function editTask() {
-  const taskElement = this.parentNode;
-
+function toggleEditMode(taskElement) {
   const editInput = taskElement.querySelector('input[type=text]');
   const label = taskElement.querySelector('label');
   const editButton = taskElement.querySelector('.edit');
@@ -67,6 +65,11 @@ function editTask() {
   }
 
   taskElement.classList.toggle('is-editing');
+}
+
+function editTask() {
+  const taskElement = this.parentNode;
+  toggleEditMode(taskElement);
 }
 
 function deleteTask() {
