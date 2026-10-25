@@ -112,14 +112,11 @@ function taskIncomplete() {
   bindTaskEvents(listItem, taskCompleted);
 }
 
-function ajaxRequest() {}
-
 //The glue to hold it all together.
 
 //Set the click handler to the addTask function.
 addButton.onclick = addTask;
 addButton.addEventListener('click', addTask);
-addButton.addEventListener('click', ajaxRequest);
 
 function bindTaskEvents(taskListItem, checkBoxEventHandler) {
   //select ListItems children
