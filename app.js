@@ -17,7 +17,7 @@ function createNewTaskElement(taskText) {
   const listItem = document.createElement('li');
 
   //input (checkbox)
-  const checkBox = document.createElement('input'); //checkbx
+  const checkbox = document.createElement('input'); //checkbx
   //label
   const label = document.createElement('label'); //label
   //input (text)
@@ -33,7 +33,7 @@ function createNewTaskElement(taskText) {
   label.className = 'task';
 
   //Each elements, needs appending
-  checkBox.type = 'checkbox';
+  checkbox.type = 'checkbox';
   editInput.type = 'text';
   editInput.className = 'task';
 
@@ -45,7 +45,7 @@ function createNewTaskElement(taskText) {
   deleteButton.appendChild(deleteButtonImg);
 
   //and appending.
-  listItem.appendChild(checkBox);
+  listItem.appendChild(checkbox);
   listItem.appendChild(label);
   listItem.appendChild(editInput);
   listItem.appendChild(editButton);
@@ -117,9 +117,9 @@ function taskIncomplete() {
 //Set the click handler to the addTask function.
 addButton.addEventListener('click', addTask);
 
-function bindTaskEvents(taskListItem, checkBoxEventHandler) {
+function bindTaskEvents(taskListItem, checkboxEventHandler) {
   //select ListItems children
-  const checkBox = taskListItem.querySelector('input[type=checkbox]');
+  const checkbox = taskListItem.querySelector('input[type=checkbox]');
   const editButton = taskListItem.querySelector('button.edit');
   const deleteButton = taskListItem.querySelector('button.delete');
 
@@ -128,7 +128,7 @@ function bindTaskEvents(taskListItem, checkBoxEventHandler) {
   //Bind deleteTask to delete button.
   deleteButton.onclick = deleteTask;
   //Bind taskCompleted to checkBoxEventHandler.
-  checkBox.onchange = checkBoxEventHandler;
+  checkbox.onchange = checkboxEventHandler;
 }
 
 //cycle over incompleteTaskHolder ul list items
