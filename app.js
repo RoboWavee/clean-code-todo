@@ -70,17 +70,17 @@ function editTask() {
 
   const editInput = listItem.querySelector('input[type=text]');
   const label = listItem.querySelector('label');
-  const editBtn = listItem.querySelector('.edit');
+  const editButton = listItem.querySelector('.edit');
   const isEditMode = listItem.classList.contains('is-editing');
   //If class of the parent is .editmode
   if (isEditMode) {
     //switch to .editmode
     //label becomes the inputs value.
     label.innerText = editInput.value;
-    editBtn.innerText = 'Edit';
+    editButton.innerText = 'Edit';
   } else {
     editInput.value = label.innerText;
-    editBtn.innerText = 'Save';
+    editButton.innerText = 'Save';
   }
 
   //toggle .editmode on the parent.
