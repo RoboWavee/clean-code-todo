@@ -6,40 +6,55 @@ const addButton = document.getElementsByTagName('button')[0];
 const incompleteTaskHolder = document.getElementById('todo-list');
 const completedTasksHolder = document.getElementById('completed-list');
 
-function createNewTaskElement(taskText) {
-  const taskElement = document.createElement('li');
-
+function createCheckbox() {
   const checkbox = document.createElement('input');
+  checkbox.type = 'checkbox';
+  return checkbox;
+}
 
+function createLabel(taskText) {
   const label = document.createElement('label');
-
-  const editInput = document.createElement('input');
-
-  const editButton = document.createElement('button');
-
-  const deleteButton = document.createElement('button');
-  const deleteIcon = document.createElement('img');
   label.innerText = taskText;
   label.className = 'task';
+  return label;
+}
 
-  checkbox.type = 'checkbox';
+function createEditInput() {
+  const editInput = document.createElement('input');
   editInput.type = 'text';
   editInput.className = 'task';
+  return editInput;
+}
 
+function createEditButton() {
+  const editButton = document.createElement('button');
   editButton.innerText = 'Edit'; //innerText encodes special characters, HTML does not.
   editButton.className = 'edit';
+  return editButton;
+}
+
+function createDeleteButton() {
+  const deleteButton = document.createElement('button');
+  const deleteIcon = document.createElement('img');
 
   deleteButton.className = 'delete';
   deleteIcon.src = './remove.svg';
   deleteButton.appendChild(deleteIcon);
 
-  taskElement.appendChild(checkbox);
-  taskElement.appendChild(label);
-  taskElement.appendChild(editInput);
-  taskElement.appendChild(editButton);
-  taskElement.appendChild(deleteButton);
+  return deleteButton;
+}
+
+function createNewTaskElement(taskText) {
+  const taskElement = document.createElement('li');
+
+  taskElement.appendChild(createCheckbox());
+  taskElement.appendChild(createLabel(taskText));
+  taskElement.appendChild(createEditInput());
+  taskElement.appendChild(createEditButton());
+  taskElement.appendChild(createDeleteButton());
   return taskElement;
 }
+
 function addTask() {
   if (!taskInput.value) return;
   const taskElement = createNewTaskElement(taskInput.value);
