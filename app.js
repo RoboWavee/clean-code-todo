@@ -10,7 +10,7 @@
 const taskInput = document.getElementById('new-task'); //Add a new task.
 const addButton = document.getElementsByTagName('button')[0]; //first button
 const incompleteTaskHolder = document.getElementById('todo-list'); //ul of #incompleteTasks
-const completedTasksHolder = document.getElementById('completed-tasks'); //completed-tasks
+const completedTasksHolder = document.getElementById('completed-list'); //completed-tasks
 
 //New task list itemfunction createNewTaskElement(taskString)
 function createNewTaskElement(taskString) {
