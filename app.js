@@ -117,11 +117,11 @@ function taskIncomplete() {
 //Set the click handler to the addTask function.
 addButton.addEventListener('click', addTask);
 
-function bindTaskEvents(tasktaskElement, checkboxEventHandler) {
+function bindTaskEvents(taskElement, checkboxEventHandler) {
   //select taskElements children
-  const checkbox = tasktaskElement.querySelector('input[type=checkbox]');
-  const editButton = tasktaskElement.querySelector('button.edit');
-  const deleteButton = tasktaskElement.querySelector('button.delete');
+  const checkbox = taskElement.querySelector('input[type=checkbox]');
+  const editButton = taskElement.querySelector('button.edit');
+  const deleteButton = taskElement.querySelector('button.delete');
 
   //Bind editTask to edit button.
   editButton.onclick = editTask;
