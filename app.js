@@ -14,7 +14,7 @@ const completedTasksHolder = document.getElementById('completed-list'); //comple
 
 //New task list itemfunction createNewTaskElement(taskString)
 function createNewTaskElement(taskText) {
-  const listItem = document.createElement('li');
+  const taskElement = document.createElement('li');
 
   //input (checkbox)
   const checkbox = document.createElement('input'); //checkbx
@@ -45,33 +45,33 @@ function createNewTaskElement(taskText) {
   deleteButton.appendChild(deleteIcon);
 
   //and appending.
-  listItem.appendChild(checkbox);
-  listItem.appendChild(label);
-  listItem.appendChild(editInput);
-  listItem.appendChild(editButton);
-  listItem.appendChild(deleteButton);
-  return listItem;
+  taskElement.appendChild(checkbox);
+  taskElement.appendChild(label);
+  taskElement.appendChild(editInput);
+  taskElement.appendChild(editButton);
+  taskElement.appendChild(deleteButton);
+  return taskElement;
 }
 function addTask() {
   //Create a new list item with the text from the #new-task:
   if (!taskInput.value) return;
-  const listItem = createNewTaskElement(taskInput.value);
+  const taskElement = createNewTaskElement(taskInput.value);
 
-  //Append listItem to incompleteTaskHolder
-  incompleteTaskHolder.appendChild(listItem);
-  bindTaskEvents(listItem, taskCompleted);
+  //Append taskElementto incompleteTaskHolder
+  incompleteTaskHolder.appendChild(taskElement);
+  bindTaskEvents(taskElement, taskCompleted);
 
   taskInput.value = '';
 }
 
 //Edit an existing task.
 function editTask() {
-  const listItem = this.parentNode;
+  const taskElement = this.parentNode;
 
-  const editInput = listItem.querySelector('input[type=text]');
-  const label = listItem.querySelector('label');
-  const editButton = listItem.querySelector('.edit');
-  const isEditMode = listItem.classList.contains('is-editing');
+  const editInput = taskElement.querySelector('input[type=text]');
+  const label = taskElement.querySelector('label');
+  const editButton = taskElement.querySelector('.edit');
+  const isEditMode = taskElement.classList.contains('is-editing');
   //If class of the parent is .editmode
   if (isEditMode) {
     //switch to .editmode
@@ -84,32 +84,32 @@ function editTask() {
   }
 
   //toggle .editmode on the parent.
-  listItem.classList.toggle('is-editing');
+  taskElement.classList.toggle('is-editing');
 }
 
 //Delete task.
 function deleteTask() {
-  const listItem = this.parentNode;
-  const ul = listItem.parentNode;
+  const taskElement = this.parentNode;
+  const ul = taskElement.parentNode;
   //Remove the parent list item from the ul.
-  ul.removeChild(listItem);
+  ul.removeChild(taskElement);
 }
 
 //Mark task completed
 function taskCompleted() {
   //Append the task list item to the #completed-tasks
-  const listItem = this.parentNode;
-  completedTasksHolder.appendChild(listItem);
-  bindTaskEvents(listItem, taskIncomplete);
+  const taskElement = this.parentNode;
+  completedTasksHolder.appendChild(taskElement);
+  bindTaskEvents(taskElement, taskIncomplete);
 }
 
 function taskIncomplete() {
   //Mark task as incomplete.
   //When the checkbox is unchecked
   //Append the task list item to the #incompleteTasks.
-  const listItem = this.parentNode;
-  incompleteTaskHolder.appendChild(listItem);
-  bindTaskEvents(listItem, taskCompleted);
+  const taskElement = this.parentNode;
+  incompleteTaskHolder.appendChild(taskElement);
+  bindTaskEvents(taskElement, taskCompleted);
 }
 
 //The glue to hold it all together.
@@ -117,11 +117,11 @@ function taskIncomplete() {
 //Set the click handler to the addTask function.
 addButton.addEventListener('click', addTask);
 
-function bindTaskEvents(taskListItem, checkboxEventHandler) {
-  //select ListItems children
-  const checkbox = taskListItem.querySelector('input[type=checkbox]');
-  const editButton = taskListItem.querySelector('button.edit');
-  const deleteButton = taskListItem.querySelector('button.delete');
+function bindTaskEvents(tasktaskElement, checkboxEventHandler) {
+  //select taskElements children
+  const checkbox = tasktaskElement.querySelector('input[type=checkbox]');
+  const editButton = tasktaskElement.querySelector('button.edit');
+  const deleteButton = tasktaskElement.querySelector('button.delete');
 
   //Bind editTask to edit button.
   editButton.onclick = editTask;
