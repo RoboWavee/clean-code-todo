@@ -13,7 +13,7 @@ const incompleteTaskHolder = document.getElementById('todo-list'); //ul of #inco
 const completedTasksHolder = document.getElementById('completed-list'); //completed-tasks
 
 //New task list itemfunction createNewTaskElement(taskString)
-function createNewTaskElement(taskString) {
+function createNewTaskElement(taskText) {
   const listItem = document.createElement('li');
 
   //input (checkbox)
@@ -29,7 +29,7 @@ function createNewTaskElement(taskString) {
   const deleteButton = document.createElement('button'); //delete button
   const deleteButtonImg = document.createElement('img'); //delete button image
 
-  label.innerText = taskString;
+  label.innerText = taskText;
   label.className = 'task';
 
   //Each elements, needs appending
