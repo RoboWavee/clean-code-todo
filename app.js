@@ -1,6 +1,26 @@
 //Problem: User interaction does not provide the correct results.
 //Solution: Add interactivity so the user can manage daily tasks.
 
+const SELECTORS = {
+  CHECKBOX: 'input[type=checkbox]',
+  TEXT_INPUT: 'input[type=text]',
+  EDIT_BUTTON: 'button.edit',
+  DELETE_BUTTON: 'button.delete',
+  LABEL: 'label',
+};
+
+const CLASSES = {
+  TASK: 'task',
+  EDIT_MODE: 'is-editing',
+};
+
+const LABELS = {
+  EDIT: 'Edit',
+  SAVE: 'Save',
+};
+
+const DELETE_ICON_PATH = './remove.svg';
+
 const taskInput = document.getElementById('new-task');
 const addButton = document.getElementsByTagName('button')[0];
 const incompleteTaskHolder = document.getElementById('todo-list');
@@ -15,20 +35,20 @@ function createCheckbox() {
 function createLabel(taskText) {
   const label = document.createElement('label');
   label.innerText = taskText;
-  label.className = 'task';
+  label.className = CLASSES.TASK;
   return label;
 }
 
 function createEditInput() {
   const editInput = document.createElement('input');
   editInput.type = 'text';
-  editInput.className = 'task';
+  editInput.className = CLASSES.TASK;
   return editInput;
 }
 
 function createEditButton() {
   const editButton = document.createElement('button');
-  editButton.innerText = 'Edit'; //innerText encodes special characters, HTML does not.
+  editButton.innerText = LABELS.EDIT; //innerText encodes special characters, HTML does not.
   editButton.className = 'edit';
   return editButton;
 }
@@ -38,7 +58,7 @@ function createDeleteButton() {
   const deleteIcon = document.createElement('img');
 
   deleteButton.className = 'delete';
-  deleteIcon.src = './remove.svg';
+  deleteIcon.src = DELETE_ICON_PATH;
   deleteButton.appendChild(deleteIcon);
 
   return deleteButton;
@@ -66,20 +86,20 @@ function addTask() {
 }
 
 function toggleEditMode(taskElement) {
-  const editInput = taskElement.querySelector('input[type=text]');
-  const label = taskElement.querySelector('label');
-  const editButton = taskElement.querySelector('.edit');
-  const isEditMode = taskElement.classList.contains('is-editing');
+  const editInput = taskElement.querySelector(SELECTORS.TEXT_INPUT);
+  const label = taskElement.querySelector(SELECTORS.LABEL);
+  const editButton = taskElement.querySelector(SELECTORS.EDIT_BUTTON);
+  const isEditMode = taskElement.classList.contains(CLASSES.EDIT_MODE);
 
   if (isEditMode) {
     label.innerText = editInput.value;
-    editButton.innerText = 'Edit';
+    editButton.innerText = LABELS.EDIT;
   } else {
     editInput.value = label.innerText;
-    editButton.innerText = 'Save';
+    editButton.innerText = LABELS.SAVE;
   }
 
-  taskElement.classList.toggle('is-editing');
+  taskElement.classList.toggle(CLASSES.EDIT_MODE);
 }
 
 function editTask() {
@@ -108,9 +128,9 @@ function taskIncomplete() {
 addButton.addEventListener('click', addTask);
 
 function bindTaskEvents(taskElement, checkboxEventHandler) {
-  const checkbox = taskElement.querySelector('input[type=checkbox]');
-  const editButton = taskElement.querySelector('button.edit');
-  const deleteButton = taskElement.querySelector('button.delete');
+  const checkbox = taskElement.querySelector(SELECTORS.CHECKBOX);
+  const editButton = taskElement.querySelector(SELECTORS.EDIT_BUTTON);
+  const deleteButton = taskElement.querySelector(SELECTORS.DELETE_BUTTON);
 
   editButton.onclick = editTask;
 
