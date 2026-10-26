@@ -70,6 +70,7 @@ function createNewTaskElement(taskText) {
   taskElement.appendChild(createCheckbox());
   taskElement.appendChild(createLabel(taskText));
   taskElement.appendChild(createEditInput());
+
   taskElement.appendChild(createEditButton());
   taskElement.appendChild(createDeleteButton());
   return taskElement;
